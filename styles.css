@@ -1,4 +1,14 @@
-.reg-form{
-  padding-top: 5%;
-  padding-right: 15%;
+body{
+  background: #333;
+  color: white;
+}
+
+.navbar{
+  border-bottom: white 3px solid;
+  opacity: 0.8;
+}
+
+.navbar-brand{
+  margin: 0;
+  border: 0;
 }
