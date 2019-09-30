@@ -14,8 +14,17 @@ body{
   opacity: 0.8;
 }
 
-  #home-section .home-inner {
-    padding-top: 10%; }
+#home-section{
+  padding-top: 10%; 
+}
   #home-section .card-form {
     background-color: #18BC9C;
+  }
+
+  #reg{
+    margin-bottom: 5%;
+  }
+
+  .card-body{
+    padding: 15%;
   }
