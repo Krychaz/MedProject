@@ -13,3 +13,9 @@ body{
   border-bottom: white 3px solid;
   opacity: 0.8;
 }
+
+  #home-section .home-inner {
+    padding-top: 10%; }
+  #home-section .card-form {
+    background-color: #18BC9C;
+  }
