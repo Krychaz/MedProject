@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Medi-Screen</string>
+    <string name="email">Email:</string>
+    <string name="passwd">Password:</string>
+    <string name="login">Login</string>
+    <string name="notReg">Not registered?</string>
+    <string name="signUp">Sign up</string>
+    <string name="logo">Logo</string>
+</resources>
