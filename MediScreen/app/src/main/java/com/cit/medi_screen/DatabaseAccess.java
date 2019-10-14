@@ -44,6 +44,16 @@ public class DatabaseAccess {
         return buffer.toString();
     }
 
+    public String getPassword(String email) {
+        c = db.rawQuery("select password from registeruser where email ='" + email + "'", new String[]{});
+        StringBuffer buffer = new StringBuffer();
+        while (c.moveToNext()) {
+            String emailOut = c.getString(0);
+            buffer.append("" + emailOut);
+        }
+        return buffer.toString();
+    }
+
 
 }
 

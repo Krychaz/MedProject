@@ -23,18 +23,6 @@ public class SignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
-        /*final SignUpDatabaseHelper myDbHelper = new SignUpDatabaseHelper(SignInActivity.this);
-        try {
-            myDbHelper.createDataBase();
-        } catch (IOException ioe) {
-            throw new Error("Unable to create database");
-        }
-        try {
-            myDbHelper.openDataBase();
-        } catch (SQLException sqle) {
-            throw sqle;
-        }
-*/
         email = (EditText) findViewById(R.id.emailEditText);
         password = (EditText) findViewById(R.id.passwdEditText);
         login = (Button) findViewById(R.id.loginButton);
@@ -52,10 +40,11 @@ public class SignInActivity extends AppCompatActivity {
                 DatabaseAccess dbAcess = DatabaseAccess.getInstance(getApplicationContext());
                 dbAcess.open();
                 String emailIn = email.getText().toString().trim();
-                String passwd = password.getText().toString().trim();
+                String passwdIn = password.getText().toString().trim();
                 String email = dbAcess.getEmail(emailIn);
+                String passwd = dbAcess.getPassword(emailIn);
 
-                if (email == emailIn) {
+                if (email.equals(emailIn) && passwd.equals(passwdIn)) {
                     Toast.makeText(SignInActivity.this, "Sucess", Toast.LENGTH_SHORT).show();
                     dbAcess.close();
                 } else {

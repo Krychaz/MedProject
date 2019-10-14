@@ -10,7 +10,7 @@ import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
 
 public class SignUpDatabaseHelper extends SQLiteAssetHelper {
-    private static final String databaseName = "medisreen.db";
+    private static final String databaseName = "mediscreen.db";
     private static final int databaseVersion = 1;
 
 
