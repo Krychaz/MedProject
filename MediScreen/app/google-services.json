@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "855129564422",
+    "firebase_url": "https://medi-screem.firebaseio.com",
+    "project_id": "medi-screem",
+    "storage_bucket": "medi-screem.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:855129564422:android:ce1b66d128946a5caeaa87",
+        "android_client_info": {
+          "package_name": "com.cit.medi_screen"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "855129564422-4tk0ur1cfdf448jo27hvp68h4p2f4c00.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBajp4ZfyqO6LAHWbyMvmXX6uToraYv8cg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "855129564422-4tk0ur1cfdf448jo27hvp68h4p2f4c00.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

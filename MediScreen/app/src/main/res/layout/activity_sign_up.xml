@@ -4,18 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".SignUpActivity"
     android:orientation="vertical">
 
     <EditText
-        android:id="@+id/firstName"
+        android:id="@+id/firstNameEditText"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/firstName"
         android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/lastName"
+        app:layout_constraintBottom_toTopOf="@+id/lastNameEditText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,7 +23,7 @@
         app:layout_constraintVertical_bias="0.883" />
 
     <EditText
-        android:id="@+id/lastName"
+        android:id="@+id/lastNameEditText"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:autofillHints=""
@@ -50,7 +50,7 @@
         app:layout_constraintBottom_toTopOf="@+id/passwdEditText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lastName" />
+        app:layout_constraintTop_toBottomOf="@+id/lastNameEditText" />
 
     <EditText
         android:id="@+id/passwdEditText"
