@@ -11,15 +11,14 @@ import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
 public class SignUpDatabaseHelper extends SQLiteAssetHelper {
     private static final String databaseName = "mediscreen.db";
-    private static final int databaseVersion = 1;
+    private static  final int databaseVersion = 2;
 
-
-
-    private static final String tableName = "registeruser";
 
 
     public SignUpDatabaseHelper(@Nullable Context context) {
         super(context, databaseName, null, databaseVersion);
+
+
 
     }
 

@@ -35,7 +35,8 @@ public class SignUpActivity extends AppCompatActivity {
         signUp.setOnClickListener(new View.OnClickListener() {
                                       @Override
                                       public void onClick(View v) {
-
+                                          DatabaseAccess dbAcess = DatabaseAccess.getInstance(getApplicationContext());
+                                          dbAcess.open();
                                           String fName = firstName.getText().toString().trim();
                                           String lName = lastName.getText().toString().trim();
                                           String emailIn = email.getText().toString().trim();
@@ -43,14 +44,17 @@ public class SignUpActivity extends AppCompatActivity {
                                           String passwdRpt = passwordRepeat.getText().toString().trim();
 
                                           if (passwd.equals(passwdRpt)) {
-                                              if (1 == 1) {
+                                              long val = dbAcess.addUser(fName, lName, emailIn, passwd);
+                                              if (val > 0) {
                                                   Toast.makeText(SignUpActivity.this, "You have registered", Toast.LENGTH_SHORT).show();
+                                                  dbAcess.close();
                                                   Intent moveToSignIn = new Intent(SignUpActivity.this, SignInActivity.class);
                                                   startActivity(moveToSignIn);
 
-                                              } else
+                                              } else {
                                                   Toast.makeText(SignUpActivity.this, "Registration error", Toast.LENGTH_SHORT).show();
-
+                                                  dbAcess.close();
+                                              }
 
                                           } else
                                               Toast.makeText(SignUpActivity.this, "Error: Passwords do not match", Toast.LENGTH_SHORT).show();

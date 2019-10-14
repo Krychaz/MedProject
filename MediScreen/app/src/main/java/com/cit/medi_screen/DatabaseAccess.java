@@ -1,8 +1,11 @@
 package com.cit.medi_screen;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+
+import java.io.File;
 
 public class DatabaseAccess {
     private SignUpDatabaseHelper dbHelper;
@@ -11,6 +14,7 @@ public class DatabaseAccess {
     Cursor c = null;
 
     private DatabaseAccess(Context context) {
+
         this.dbHelper = new SignUpDatabaseHelper(context);
 
     }
@@ -52,6 +56,18 @@ public class DatabaseAccess {
             buffer.append("" + emailOut);
         }
         return buffer.toString();
+    }
+    public long addUser(String fname,String lName,String email,String password){
+        ContentValues values = new ContentValues();
+        values.put("firstname", fname);
+        values.put("lastname", lName);
+        values.put("email", email);
+        values.put("password", password);
+
+
+
+        long res = db.insert("registeruser", null, values);
+        return res;
     }
 
 
