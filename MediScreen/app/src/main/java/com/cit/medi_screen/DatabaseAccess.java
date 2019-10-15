@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import java.io.File;
 
 public class DatabaseAccess {
     private SignUpDatabaseHelper dbHelper;
@@ -25,7 +24,6 @@ public class DatabaseAccess {
         }
         return instance;
     }
-
 
     public void open() {
         this.db = dbHelper.getWritableDatabase();

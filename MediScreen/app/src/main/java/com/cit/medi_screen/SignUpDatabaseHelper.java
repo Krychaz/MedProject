@@ -1,15 +1,16 @@
 package com.cit.medi_screen;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
 
 
 
-public class SignUpDatabaseHelper extends SQLiteAssetHelper {
+public class SignUpDatabaseHelper extends SQLiteOpenHelper {
     private static final String databaseName = "mediscreen.db";
     private static  final int databaseVersion = 2;
 
@@ -22,4 +23,13 @@ public class SignUpDatabaseHelper extends SQLiteAssetHelper {
 
     }
 
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
+    }
 }

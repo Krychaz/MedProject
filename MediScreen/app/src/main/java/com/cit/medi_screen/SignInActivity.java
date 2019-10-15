@@ -38,8 +38,7 @@ public class SignInActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 DatabaseAccess dbAcess = DatabaseAccess.getInstance(getApplicationContext());
-                ///////dbAcess.delete();
-               // dbAcess.open();
+                dbAcess.open();
                 String emailIn = email.getText().toString().trim();
                 String passwdIn = password.getText().toString().trim();
                 String email = dbAcess.getEmail(emailIn);
