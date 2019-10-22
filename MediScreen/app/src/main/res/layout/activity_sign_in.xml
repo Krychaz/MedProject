@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignInActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".SignInActivity">
 
     <EditText
         android:id="@+id/emailEditText"
@@ -17,23 +17,23 @@
         android:inputType="textEmailAddress"
         app:layout_constraintBottom_toTopOf="@+id/passwdEditText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.952" />
+        app:layout_constraintVertical_bias="0.869" />
 
     <EditText
         android:id="@+id/passwdEditText"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="260dp"
+        android:layout_marginBottom="324dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/passwd"
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -45,13 +45,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwdEditText"
-        app:layout_constraintVertical_bias="0.778" />
+        app:layout_constraintVertical_bias="0.734" />
 
     <Button
         android:id="@+id/signUpButton"
         android:layout_width="175dp"
         android:layout_height="55dp"
-        android:layout_marginBottom="56dp"
+        android:layout_marginBottom="136dp"
         android:text="@string/signUp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -61,13 +61,13 @@
         android:id="@+id/logoImageView"
         android:layout_width="138dp"
         android:layout_height="129dp"
+        android:contentDescription="@string/logo"
         app:layout_constraintBottom_toTopOf="@+id/emailEditText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.818"
-        app:srcCompat="@drawable/logo"
-        android:contentDescription="@string/logo" />
+        app:layout_constraintVertical_bias="0.565"
+        app:srcCompat="@drawable/logo" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 

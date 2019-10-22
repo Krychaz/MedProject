@@ -46,25 +46,24 @@ public class SignInActivity extends AppCompatActivity {
                 String passwdIn = password.getText().toString().trim();
                 String email = dbAcess.getEmail(emailIn);
                 String passwd = dbAcess.getPassword(emailIn);
-                if (email.equals("") && passwd.equals(""))
+                if (emailIn.equals("") && passwdIn.equals(""))
                     Toast.makeText(SignInActivity.this, "Error please enter email and password ", Toast.LENGTH_SHORT).show();
                 else if (email.equals(emailIn) && passwd.equals(passwdIn)) {
                     Toast.makeText(SignInActivity.this, "Sucess", Toast.LENGTH_SHORT).show();
 
                     loggedInEmail = email;
                     loggedInPassword = passwd;
-                    String gp = dbAcess.getGP();
-                    dbAcess.close();
-                    if (gp.equals(""))
-                        startActivity(gpIntent);
-                    else
+                    boolean gpExists = dbAcess.gpExists();
+                    if (gpExists)
                         Toast.makeText(SignInActivity.this, "gp exists", Toast.LENGTH_SHORT).show();
 
+
+                    else
+                        startActivity(gpIntent);
                 } else {
                     Toast.makeText(SignInActivity.this, "Error incorrect email and/or password", Toast.LENGTH_SHORT).show();
-                    dbAcess.close();
-
                 }
+                dbAcess.close();
 
 
             }

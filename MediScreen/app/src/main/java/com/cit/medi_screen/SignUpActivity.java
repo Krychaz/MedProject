@@ -42,24 +42,27 @@ public class SignUpActivity extends AppCompatActivity {
                                           String emailIn = email.getText().toString().trim();
                                           String passwd = password.getText().toString().trim();
                                           String passwdRpt = passwordRepeat.getText().toString().trim();
+                                          if (fName.equals("") || lName.equals("") || emailIn.equals("") || passwd.equals("") || passwdRpt.equals(""))
+                                              Toast.makeText(SignUpActivity.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
+                                          else {
+                                              if (passwd.equals(passwdRpt)) {
+                                                  long val = dbAcess.addUser(fName, lName, emailIn, passwd);
+                                                  if (val > 0) {
+                                                      Toast.makeText(SignUpActivity.this, "You have registered", Toast.LENGTH_SHORT).show();
+                                                      dbAcess.close();
+                                                      Intent moveToSignIn = new Intent(SignUpActivity.this, SignInActivity.class);
+                                                      startActivity(moveToSignIn);
 
-                                          if (passwd.equals(passwdRpt)) {
-                                              long val = dbAcess.addUser(fName, lName, emailIn, passwd);
-                                              if (val > 0) {
-                                                  Toast.makeText(SignUpActivity.this, "You have registered", Toast.LENGTH_SHORT).show();
-                                                  dbAcess.close();
-                                                  Intent moveToSignIn = new Intent(SignUpActivity.this, SignInActivity.class);
-                                                  startActivity(moveToSignIn);
+                                                  } else {
+                                                      Toast.makeText(SignUpActivity.this, "Registration error", Toast.LENGTH_SHORT).show();
+                                                      dbAcess.close();
+                                                  }
 
-                                              } else {
-                                                  Toast.makeText(SignUpActivity.this, "Registration error", Toast.LENGTH_SHORT).show();
-                                                  dbAcess.close();
-                                              }
-
-                                          } else
-                                              Toast.makeText(SignUpActivity.this, "Error: Passwords do not match", Toast.LENGTH_SHORT).show();
+                                              } else
+                                                  Toast.makeText(SignUpActivity.this, "Error: Passwords do not match", Toast.LENGTH_SHORT).show();
 
 
+                                          }
                                       }
                                   }
 

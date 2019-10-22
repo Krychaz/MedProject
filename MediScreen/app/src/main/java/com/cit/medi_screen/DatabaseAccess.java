@@ -79,5 +79,14 @@ public class DatabaseAccess {
         return buffer.toString();
 
     }
+    public boolean gpExists(){
+        boolean res;
+        String gp = getGP();
+        if (gp.equals("null"))
+            res = false;
+        else
+            res = true;
+        return res;
+    }
 }
 

@@ -7,17 +7,13 @@ import androidx.annotation.Nullable;
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
 
-
-
 public class SignUpDatabaseHelper extends SQLiteAssetHelper {
     private static final String databaseName = "mediScreenDataBase.db";
-    private static  final int databaseVersion = 2;
-
+    private static final int databaseVersion = 2;
 
 
     public SignUpDatabaseHelper(@Nullable Context context) {
         super(context, databaseName, null, databaseVersion);
-
 
 
     }
