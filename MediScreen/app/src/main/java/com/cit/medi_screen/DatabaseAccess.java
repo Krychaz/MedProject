@@ -90,10 +90,11 @@ public class DatabaseAccess {
         return res;
     }
 
-    public long addGP(String gpName, String gpAddress) {
+    public long addGP(String gpName, String gpAddress,Integer gpPhone) {
         ContentValues values = new ContentValues();
         values.put("gpname", gpName);
         values.put("gpaddress", gpAddress);
+        values.put("gpphone",gpPhone);
 
 
         long res = db.update("registeruser", values,"email='"+SignInActivity.getLoggedInEmail()+"'",null );

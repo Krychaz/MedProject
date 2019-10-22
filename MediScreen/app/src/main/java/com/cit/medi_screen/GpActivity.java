@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class GpActivity extends AppCompatActivity {
     private EditText gpName;
     private EditText gpAddress;
+    private EditText gpPhone;
     private Button setGp;
 
     @Override
@@ -19,17 +20,19 @@ public class GpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_gp);
         gpName = (EditText) findViewById(R.id.gpNameEditText);
         gpAddress = (EditText) findViewById(R.id.gpAddressEdditText);
+        gpPhone = (EditText) findViewById(R.id.gpPhoneEditText);
         setGp = (Button) findViewById(R.id.gpSetButton);
         setGp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String gpNameIn = gpName.getText().toString().trim();
                 String gpAddressIn = gpAddress.getText().toString().trim();
+                Integer  gpPhoneInt = Integer.parseInt(gpPhone.getText().toString().trim());
                 DatabaseAccess dbAccess = DatabaseAccess.getInstance(getApplicationContext());
                 dbAccess.open();
-                long res = dbAccess.addGP(gpNameIn, gpAddressIn);
-                if (gpAddressIn.equals("") || gpNameIn.equals(""))
-                    Toast.makeText(GpActivity.this, "Error please enter email and password ", Toast.LENGTH_SHORT).show();
+                long res = dbAccess.addGP(gpNameIn, gpAddressIn,gpPhoneInt);
+                if (gpAddressIn.equals("") || gpNameIn.equals("")||gpPhoneInt == null)
+                    Toast.makeText(GpActivity.this, "Error please enter all fields", Toast.LENGTH_SHORT).show();
                 else {
                     if (res > 0)
                         Toast.makeText(GpActivity.this, "You set your GP", Toast.LENGTH_SHORT).show();

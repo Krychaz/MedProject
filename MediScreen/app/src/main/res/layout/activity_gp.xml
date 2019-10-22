@@ -11,14 +11,15 @@
         android:id="@+id/gpNameEditText"
         android:layout_width="300dp"
         android:layout_height="50dp"
+        android:layout_marginTop="60dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/gpName"
         android:inputType="text"
-        app:layout_constraintBottom_toBottomOf="@+id/gpSetButton"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></EditText>
+        app:layout_constraintTop_toBottomOf="@+id/gpTextView"></EditText>
 
     <EditText
         android:id="@+id/gpAddressEdditText"
@@ -28,34 +29,50 @@
         android:ems="10"
         android:hint="@string/gpAddress"
         android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/gpSetButton"
+        app:layout_constraintBottom_toTopOf="@+id/gpPhoneEditText"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gpNameEditText"
-        app:layout_constraintVertical_bias="0.269" />
+        app:layout_constraintTop_toBottomOf="@+id/gpNameEditText" />
 
     <Button
         android:id="@+id/gpSetButton"
         android:layout_width="175dp"
         android:layout_height="55dp"
-        android:layout_marginBottom="140dp"
         android:text="@string/setGP"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gpPhoneEditText" />
 
     <TextView
         android:id="@+id/gpTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
         android:text="@string/gpHead"
         android:textColor="@color/colorPrimary"
         android:textSize="132px"
-        app:layout_constraintBottom_toTopOf="@+id/gpNameEditText"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.589" />
+        app:layout_constraintVertical_bias="0.036" />
+
+    <EditText
+        android:id="@+id/gpPhoneEditText"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/gpPhone"
+        android:inputType="phone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gpNameEditText"
+        app:layout_constraintVertical_bias="0.312" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,5 +13,6 @@
     <string name="gpName">GP name:</string>
     <string name="setGP">Set GP</string>
     <string name="gpHead">Set your GP</string>
+    <string name="gpPhone">GP phone number:</string>
 
 </resources>
