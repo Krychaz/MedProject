@@ -102,7 +102,7 @@
         android:layout_height="wrap_content"
         android:text="@string/signUp"
         android:textColor="@color/colorPrimary"
-        android:textSize="72px"
+        android:textSize="132px"
         app:layout_constraintBottom_toTopOf="@+id/firstNameEditText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

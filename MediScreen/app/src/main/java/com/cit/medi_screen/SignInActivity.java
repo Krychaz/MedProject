@@ -40,12 +40,12 @@ public class SignInActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent gpIntent = new Intent(SignInActivity.this, GpActivity.class);
 
-                DatabaseAccess dbAcess = DatabaseAccess.getInstance(getApplicationContext());
-                dbAcess.open();
+                DatabaseAccess dbAccess = DatabaseAccess.getInstance(getApplicationContext());
+                dbAccess.open();
                 String emailIn = email.getText().toString().trim();
                 String passwdIn = password.getText().toString().trim();
-                String email = dbAcess.getEmail(emailIn);
-                String passwd = dbAcess.getPassword(emailIn);
+                String email = dbAccess.getEmail(emailIn);
+                String passwd = dbAccess.getPassword(emailIn);
                 if (emailIn.equals("") && passwdIn.equals(""))
                     Toast.makeText(SignInActivity.this, "Error please enter email and password ", Toast.LENGTH_SHORT).show();
                 else if (email.equals(emailIn) && passwd.equals(passwdIn)) {
@@ -53,7 +53,7 @@ public class SignInActivity extends AppCompatActivity {
 
                     loggedInEmail = email;
                     loggedInPassword = passwd;
-                    boolean gpExists = dbAcess.gpExists();
+                    boolean gpExists = dbAccess.gpExists();
                     if (gpExists)
                         Toast.makeText(SignInActivity.this, "gp exists", Toast.LENGTH_SHORT).show();
 
@@ -63,7 +63,7 @@ public class SignInActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(SignInActivity.this, "Error incorrect email and/or password", Toast.LENGTH_SHORT).show();
                 }
-                dbAcess.close();
+                dbAccess.close();
 
 
             }

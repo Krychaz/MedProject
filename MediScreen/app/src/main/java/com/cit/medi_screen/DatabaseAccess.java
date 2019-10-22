@@ -79,7 +79,8 @@ public class DatabaseAccess {
         return buffer.toString();
 
     }
-    public boolean gpExists(){
+
+    public boolean gpExists() {
         boolean res;
         String gp = getGP();
         if (gp.equals("null"))
@@ -88,5 +89,14 @@ public class DatabaseAccess {
             res = true;
         return res;
     }
-}
 
+    public long addGP(String gpName, String gpAddress) {
+        ContentValues values = new ContentValues();
+        values.put("gpname", gpName);
+        values.put("gpaddress", gpAddress);
+
+
+        long res = db.update("registeruser", values,"email='"+SignInActivity.getLoggedInEmail()+"'",null );
+        return res;
+    }
+}
