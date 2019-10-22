@@ -96,5 +96,17 @@
         app:layout_constraintTop_toBottomOf="@+id/passwdEditText"
         app:layout_constraintVertical_bias="0.632" />
 
+    <TextView
+        android:id="@+id/signUpTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/signUp"
+        android:textColor="@color/colorPrimary"
+        android:textSize="72px"
+        app:layout_constraintBottom_toTopOf="@+id/firstNameEditText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

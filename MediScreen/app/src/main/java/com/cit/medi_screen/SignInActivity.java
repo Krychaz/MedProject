@@ -1,7 +1,6 @@
 package com.cit.medi_screen;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,12 +10,14 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class SignInActivity extends AppCompatActivity {
-    EditText email;
-    EditText password;
-    Button login;
-    Button signUp;
-    Cursor c = null;
+    private EditText email;
+    private EditText password;
+    private Button login;
+    private Button signUp;
 
+
+    private static String loggedInEmail;
+    private static String loggedInPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,25 +38,47 @@ public class SignInActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent gpIntent = new Intent(SignInActivity.this, GpActivity.class);
+
                 DatabaseAccess dbAcess = DatabaseAccess.getInstance(getApplicationContext());
                 dbAcess.open();
                 String emailIn = email.getText().toString().trim();
                 String passwdIn = password.getText().toString().trim();
                 String email = dbAcess.getEmail(emailIn);
                 String passwd = dbAcess.getPassword(emailIn);
-
-                if (email.equals(emailIn) && passwd.equals(passwdIn)) {
+                if (email.equals("") && passwd.equals(""))
+                    Toast.makeText(SignInActivity.this, "Error please enter email and password ", Toast.LENGTH_SHORT).show();
+                else if (email.equals(emailIn) && passwd.equals(passwdIn)) {
                     Toast.makeText(SignInActivity.this, "Sucess", Toast.LENGTH_SHORT).show();
+
+                    loggedInEmail = email;
+                    loggedInPassword = passwd;
+                    String gp = dbAcess.getGP();
                     dbAcess.close();
+                    if (gp.equals(""))
+                        startActivity(gpIntent);
+                    else
+                        Toast.makeText(SignInActivity.this, "gp exists", Toast.LENGTH_SHORT).show();
+
                 } else {
                     Toast.makeText(SignInActivity.this, "Error incorrect email and/or password", Toast.LENGTH_SHORT).show();
                     dbAcess.close();
 
                 }
+
+
             }
         });
-
     }
+
+    public static String getLoggedInEmail() {
+        return loggedInEmail;
+    }
+
+    public String getLoggedInPassword() {
+        return loggedInPassword;
+    }
+
 }
 
 

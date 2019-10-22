@@ -9,5 +9,9 @@
     <string name="logo">Logo</string>
     <string name="firstName">First name:</string>
     <string name="lastName">Last name:</string>
+    <string name="gpAddress">GP address:</string>
+    <string name="gpName">GP name:</string>
+    <string name="setGP">Set GP</string>
+    <string name="gpHead">Set your GP</string>
 
 </resources>

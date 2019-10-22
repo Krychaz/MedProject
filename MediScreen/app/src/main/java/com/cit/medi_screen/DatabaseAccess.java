@@ -25,6 +25,7 @@ public class DatabaseAccess {
         return instance;
     }
 
+
     public void open() {
         this.db = dbHelper.getWritableDatabase();
     }
@@ -55,7 +56,8 @@ public class DatabaseAccess {
         }
         return buffer.toString();
     }
-    public long addUser(String fname,String lName,String email,String password){
+
+    public long addUser(String fname, String lName, String email, String password) {
         ContentValues values = new ContentValues();
         values.put("firstname", fname);
         values.put("lastname", lName);
@@ -63,11 +65,19 @@ public class DatabaseAccess {
         values.put("password", password);
 
 
-
         long res = db.insert("registeruser", null, values);
         return res;
     }
 
+    public String getGP() {
+        c = db.rawQuery("select gpname from registeruser where email ='" + SignInActivity.getLoggedInEmail() + "'", new String[]{});
+        StringBuffer buffer = new StringBuffer();
+        while (c.moveToNext()) {
+            String emailOut = c.getString(0);
+            buffer.append("" + emailOut);
+        }
+        return buffer.toString();
 
+    }
 }
 
