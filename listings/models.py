@@ -11,11 +11,11 @@ class listing(models.Model):
   height = models.IntegerField(default=0)
   weight = models.IntegerField(default=0)
   PAL = models.IntegerField(default=0)
-  blood_p = models.IntegerField(default=0)
+  blood_p = models.DecimalField(max_digits=7, decimal_places=3)
   AIPW = models.IntegerField(default=0)
   SIPW = models.IntegerField(default=0)
   smoker = models.BooleanField(default=False)
   hearthbeat = models.BooleanField(default=False)
   date = models.DateField(default=datetime.now, blank=True)
-def __str__(self):
+  def __str__(self):
     return self.name
