@@ -22,3 +22,12 @@ div.breadcrumbs {
 div.breadcrumbs a {
   color: #333;
 }
+
+.module h2, .module caption, .inline-group h2{
+  background: #30caa0;
+}
+
+.button, input[type=submit], input[type=button], .submit-row input, a.button{
+  color: #19284e; 
+  color: #fff;
+}
