@@ -14,8 +14,8 @@ class listing(models.Model):
   blood_p = models.IntegerField(default=0)
   AIPW = models.IntegerField(default=0)
   SIPW = models.IntegerField(default=0)
-  smoker = models.BooleanField()
-  hearthbeat = models.BooleanField()
-  date = models.DateField(default=datetime.now, blank=true)
+  smoker = models.BooleanField(default=False)
+  hearthbeat = models.BooleanField(default=False)
+  date = models.DateField(default=datetime.now, blank=True)
 def __str__(self):
     return self.name
