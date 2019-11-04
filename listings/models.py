@@ -19,3 +19,4 @@ class listing(models.Model):
   date = models.DateField(default=datetime.now, blank=True)
   def __str__(self):
     return self.name
+
