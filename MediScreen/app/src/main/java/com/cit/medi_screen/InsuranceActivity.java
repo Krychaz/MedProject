@@ -1,0 +1,45 @@
+package com.cit.medi_screen;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+public class InsuranceActivity extends AppCompatActivity {
+    private EditText insureName;
+    private EditText insurePhone;
+    private Button setInsure;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_insurance);
+        insureName = (EditText) findViewById(R.id.insureNameEditText);
+        insurePhone = (EditText) findViewById(R.id.insurePhoneEditText);
+        setInsure = (Button) findViewById(R.id.insureSetButton);
+        setInsure.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String insureNameIn = insureName.getText().toString().trim();
+                Integer  insurePhoneInt = Integer.parseInt(insurePhone.getText().toString().trim());
+                DatabaseAccess dbAccess = DatabaseAccess.getInstance(getApplicationContext());
+                dbAccess.open();
+                long res = dbAccess.addInsure(insureNameIn ,insurePhoneInt);
+                if ( insureNameIn.equals("")||insurePhoneInt == null)
+                    Toast.makeText(InsuranceActivity.this, "Error please enter all fields", Toast.LENGTH_SHORT).show();
+                else {
+                    if (res > 0)
+                        Toast.makeText(InsuranceActivity.this, "You set your insurer", Toast.LENGTH_SHORT).show();
+                    else
+                        Toast.makeText(InsuranceActivity.this, "Error setting your insurer", Toast.LENGTH_SHORT).show();
+
+                    dbAccess.close();
+                }
+            }
+        });
+
+    }
+}

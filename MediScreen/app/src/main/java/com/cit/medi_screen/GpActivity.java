@@ -1,5 +1,6 @@
 package com.cit.medi_screen;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +14,7 @@ public class GpActivity extends AppCompatActivity {
     private EditText gpAddress;
     private EditText gpPhone;
     private Button setGp;
+    private SignInActivity signIn = new SignInActivity();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,18 +27,25 @@ public class GpActivity extends AppCompatActivity {
         setGp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent insureIntent = new Intent(GpActivity.this, InsuranceActivity.class);
+
                 String gpNameIn = gpName.getText().toString().trim();
                 String gpAddressIn = gpAddress.getText().toString().trim();
-                Integer  gpPhoneInt = Integer.parseInt(gpPhone.getText().toString().trim());
+                Integer gpPhoneInt = Integer.parseInt(gpPhone.getText().toString().trim());
                 DatabaseAccess dbAccess = DatabaseAccess.getInstance(getApplicationContext());
                 dbAccess.open();
-                long res = dbAccess.addGP(gpNameIn, gpAddressIn,gpPhoneInt);
-                if (gpAddressIn.equals("") || gpNameIn.equals("")||gpPhoneInt == null)
+                long res = dbAccess.addGP(gpNameIn, gpAddressIn, gpPhoneInt);
+                if (gpAddressIn.equals("") || gpNameIn.equals("") || gpPhoneInt == null)
                     Toast.makeText(GpActivity.this, "Error please enter all fields", Toast.LENGTH_SHORT).show();
                 else {
-                    if (res > 0)
+                    if (res > 0) {
                         Toast.makeText(GpActivity.this, "You set your GP", Toast.LENGTH_SHORT).show();
-                    else
+                        if (signIn.getInsurerExists() == false)
+                            startActivity(insureIntent);
+                        else
+                            Toast.makeText(GpActivity.this, "Insurer exists", Toast.LENGTH_SHORT).show();
+
+                    } else
                         Toast.makeText(GpActivity.this, "Error setting your GP", Toast.LENGTH_SHORT).show();
 
                     dbAccess.close();

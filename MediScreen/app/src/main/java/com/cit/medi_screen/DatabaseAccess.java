@@ -90,14 +90,46 @@ public class DatabaseAccess {
         return res;
     }
 
-    public long addGP(String gpName, String gpAddress,Integer gpPhone) {
+    public long addGP(String gpName, String gpAddress, Integer gpPhone) {
         ContentValues values = new ContentValues();
         values.put("gpname", gpName);
         values.put("gpaddress", gpAddress);
-        values.put("gpphone",gpPhone);
+        values.put("gpphone", gpPhone);
 
 
-        long res = db.update("registeruser", values,"email='"+SignInActivity.getLoggedInEmail()+"'",null );
+        long res = db.update("registeruser", values, "email='" + SignInActivity.getLoggedInEmail() + "'", null);
         return res;
     }
+
+
+    public long addInsure(String insureName, Integer insurePhone) {
+        ContentValues values = new ContentValues();
+        values.put("insurename", insureName);
+        values.put("insurephone", insurePhone);
+
+
+        long res = db.update("registeruser", values, "email='" + SignInActivity.getLoggedInEmail() + "'", null);
+        return res;
+    }
+
+    public boolean insureExists() {
+        boolean res;
+        String gp = getInsure();
+        if (gp.equals("null"))
+            res = false;
+        else
+            res = true;
+        return res;
+    }
+
+    public String getInsure() {
+        c = db.rawQuery("select insurename from registeruser where email ='" + SignInActivity.getLoggedInEmail() + "'", new String[]{});
+        StringBuffer buffer = new StringBuffer();
+        while (c.moveToNext()) {
+            String emailOut = c.getString(0);
+            buffer.append("" + emailOut);
+        }
+        return buffer.toString();
+    }
+
 }

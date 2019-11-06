@@ -4,74 +4,67 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GpActivity">
+    tools:context=".InsuranceActivity">
+
 
 
     <EditText
-        android:id="@+id/gpNameEditText"
+        android:id="@+id/insureNameEditText"
+
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginBottom="40dp"
         android:autofillHints=""
         android:ems="10"
-        android:hint="@string/gpName"
+        android:hint="@string/insureName"
         android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/insurePhoneEditText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gpTextView" tools:targetApi="o"></EditText>
-
-    <EditText
-        android:id="@+id/gpAddressEdditText"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="@string/gpAddress"
-        android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/gpPhoneEditText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gpNameEditText" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
-        android:id="@+id/gpSetButton"
+        android:id="@+id/insureSetButton"
         android:layout_width="175dp"
         android:layout_height="55dp"
-        android:text="@string/setGP"
+
+        android:layout_marginBottom="56dp"
+        android:text="@string/setInsure"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gpPhoneEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/gpTextView"
+        app:layout_constraintVertical_bias="0.949" />
 
     <TextView
         android:id="@+id/gpTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/gpHead"
+        android:text="@string/insureHead"
         android:textColor="@color/colorPrimary"
         android:textSize="132px"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.120000005" />
 
     <EditText
-        android:id="@+id/gpPhoneEditText"
+        android:id="@+id/insurePhoneEditText"
         android:layout_width="300dp"
         android:layout_height="50dp"
+        android:layout_marginBottom="116dp"
         android:autofillHints=""
         android:ems="10"
-        android:hint="@string/gpPhone"
+        android:hint="@string/insurePhone"
         android:inputType="phone"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/insureSetButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gpNameEditText"
-        app:layout_constraintVertical_bias="0.312" />
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

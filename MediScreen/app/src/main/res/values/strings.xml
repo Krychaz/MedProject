@@ -14,5 +14,10 @@
     <string name="setGP">Set GP</string>
     <string name="gpHead">Set your GP</string>
     <string name="gpPhone">GP phone number:</string>
+    <string name="title_activity_insurance">InsuranceActivity</string>
+    <string name="insureName">Insurer name:</string>
+    <string name="setInsure">Set Insurer</string>
+    <string name="insureHead">Set your insurer</string>
+    <string name="insurePhone">Insurer phone-number:</string>
 
 </resources>

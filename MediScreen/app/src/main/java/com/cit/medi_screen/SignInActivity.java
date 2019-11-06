@@ -14,20 +14,26 @@ public class SignInActivity extends AppCompatActivity {
     private EditText password;
     private Button login;
     private Button signUp;
+    private DatabaseAccess dbAccess;
+    private boolean gpExists;
+
+
+    private boolean insurerExists;
 
 
     private static String loggedInEmail;
     private static String loggedInPassword;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
-        email = (EditText) findViewById(R.id.emailEditText);
-        password = (EditText) findViewById(R.id.passwdEditText);
-        login = (Button) findViewById(R.id.loginButton);
-        signUp = (Button) findViewById(R.id.signUpButton);
+        email = findViewById(R.id.emailEditText);
+        password = findViewById(R.id.passwdEditText);
+        login = findViewById(R.id.loginButton);
+        signUp = findViewById(R.id.signUpButton);
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -39,8 +45,8 @@ public class SignInActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent gpIntent = new Intent(SignInActivity.this, GpActivity.class);
-
-                DatabaseAccess dbAccess = DatabaseAccess.getInstance(getApplicationContext());
+                Intent insureIntent = new Intent(SignInActivity.this, InsuranceActivity.class);
+                dbAccess = getDBAccess();
                 dbAccess.open();
                 String emailIn = email.getText().toString().trim();
                 String passwdIn = password.getText().toString().trim();
@@ -53,12 +59,16 @@ public class SignInActivity extends AppCompatActivity {
 
                     loggedInEmail = email;
                     loggedInPassword = passwd;
-                    boolean gpExists = dbAccess.gpExists();
-                    if (gpExists)
+                    gpExists = gpExists();
+                    if (gpExists) {
                         Toast.makeText(SignInActivity.this, "gp exists", Toast.LENGTH_SHORT).show();
+                        insurerExists = insurerExists();
+                        if (insurerExists)
+                            Toast.makeText(SignInActivity.this, "insurer exists", Toast.LENGTH_SHORT).show();
+                        else
+                            startActivity(insureIntent);
 
-
-                    else
+                    } else
                         startActivity(gpIntent);
                 } else {
                     Toast.makeText(SignInActivity.this, "Error incorrect email and/or password", Toast.LENGTH_SHORT).show();
@@ -70,6 +80,20 @@ public class SignInActivity extends AppCompatActivity {
         });
     }
 
+    private DatabaseAccess getDBAccess() {
+        return DatabaseAccess.getInstance(getApplicationContext());
+    }
+
+    public boolean gpExists() {
+        dbAccess.open();
+        return dbAccess.gpExists();
+    }
+
+    public boolean insurerExists() {
+        dbAccess.open();
+        return dbAccess.insureExists();
+    }
+
     public static String getLoggedInEmail() {
         return loggedInEmail;
     }
@@ -78,6 +102,9 @@ public class SignInActivity extends AppCompatActivity {
         return loggedInPassword;
     }
 
+    public boolean getInsurerExists() {
+        return insurerExists;
+    }
 }
 
 
