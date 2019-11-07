@@ -5,18 +5,24 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.sql.Connection;
+
 
 public class DatabaseAccess {
+    private PgConnection pg = new PgConnection();
     private SignUpDatabaseHelper dbHelper;
     private SQLiteDatabase db;
     private static DatabaseAccess instance;
     Cursor c = null;
+    Connection connection;
+
 
     private DatabaseAccess(Context context) {
 
         this.dbHelper = new SignUpDatabaseHelper(context);
 
     }
+
 
     public static DatabaseAccess getInstance(Context context) {
         if (instance == null) {
@@ -58,6 +64,8 @@ public class DatabaseAccess {
     }
 
     public long addUser(String fname, String lName, String email, String password) {
+        long res;
+
         ContentValues values = new ContentValues();
         values.put("firstname", fname);
         values.put("lastname", lName);
@@ -65,9 +73,12 @@ public class DatabaseAccess {
         values.put("password", password);
 
 
-        long res = db.insert("registeruser", null, values);
+        res = db.insert("registeruser", null, values);
+
+
         return res;
     }
+
 
     public String getGP() {
         c = db.rawQuery("select gpname from registeruser where email ='" + SignInActivity.getLoggedInEmail() + "'", new String[]{});
@@ -131,5 +142,43 @@ public class DatabaseAccess {
         }
         return buffer.toString();
     }
+    public String getInsurePhone() {
+        c = db.rawQuery("select insurephone from registeruser where email ='" + SignInActivity.getLoggedInEmail() + "'", new String[]{});
+        StringBuffer buffer = new StringBuffer();
+        while (c.moveToNext()) {
+            String emailOut = c.getString(0);
+            buffer.append("" + emailOut);
+        }
+        return buffer.toString();
+    }
+    public String getGPPhone() {
+        c = db.rawQuery("select gpphone from registeruser where email ='" + SignInActivity.getLoggedInEmail() + "'", new String[]{});
+        StringBuffer buffer = new StringBuffer();
+        while (c.moveToNext()) {
+            String emailOut = c.getString(0);
+            buffer.append("" + emailOut);
+        }
+        return buffer.toString();
+    }
 
+    public String getAge() {
+        c = db.rawQuery("select age from registeruser where email ='" + SignInActivity.getLoggedInEmail() + "'", new String[]{});
+        StringBuffer buffer = new StringBuffer();
+        while (c.moveToNext()) {
+            String emailOut = c.getString(0);
+            buffer.append("" + emailOut);
+        }
+        return buffer.toString();
+    }
+
+    public boolean medHisExists() {
+        boolean res;
+        String gp = getAge();
+        if (gp.equals("null"))
+            res = false;
+        else
+            res = true;
+        return res;
+
+    }
 }

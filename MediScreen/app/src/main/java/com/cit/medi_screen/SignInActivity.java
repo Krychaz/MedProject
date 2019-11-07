@@ -16,6 +16,7 @@ public class SignInActivity extends AppCompatActivity {
     private Button signUp;
     private DatabaseAccess dbAccess;
     private boolean gpExists;
+    private boolean medHisExists;
 
 
     private boolean insurerExists;
@@ -46,6 +47,9 @@ public class SignInActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent gpIntent = new Intent(SignInActivity.this, GpActivity.class);
                 Intent insureIntent = new Intent(SignInActivity.this, InsuranceActivity.class);
+                Intent medHisIntent = new Intent(SignInActivity.this, MedicalHistoryActivity.class);
+                Intent homeIntent = new Intent(SignInActivity.this, HomeActivity.class);
+
                 dbAccess = getDBAccess();
                 dbAccess.open();
                 String emailIn = email.getText().toString().trim();
@@ -60,12 +64,20 @@ public class SignInActivity extends AppCompatActivity {
                     loggedInEmail = email;
                     loggedInPassword = passwd;
                     gpExists = gpExists();
+                    gpExists = gpExists();
                     if (gpExists) {
                         Toast.makeText(SignInActivity.this, "gp exists", Toast.LENGTH_SHORT).show();
                         insurerExists = insurerExists();
-                        if (insurerExists)
+                        if (insurerExists) {
                             Toast.makeText(SignInActivity.this, "insurer exists", Toast.LENGTH_SHORT).show();
-                        else
+                            medHisExists = medHisExists();
+                            if (medHisExists) {
+                                Toast.makeText(SignInActivity.this, "medical history exists", Toast.LENGTH_SHORT).show();
+                                startActivity(homeIntent);
+                            } else
+                                startActivity(medHisIntent);
+
+                        } else
                             startActivity(insureIntent);
 
                     } else
@@ -87,6 +99,11 @@ public class SignInActivity extends AppCompatActivity {
     public boolean gpExists() {
         dbAccess.open();
         return dbAccess.gpExists();
+    }
+
+    public boolean medHisExists() {
+        dbAccess.open();
+        return dbAccess.medHisExists();
     }
 
     public boolean insurerExists() {

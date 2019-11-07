@@ -19,5 +19,15 @@
     <string name="setInsure">Set Insurer</string>
     <string name="insureHead">Set your insurer</string>
     <string name="insurePhone">Insurer phone-number:</string>
+    <string name="setMedHis">Set Medical History</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="Payment">Pay Insurance</string>
+    <string name="MediAi">Medi-Ai</string>
+    <string name="call">Request Professional</string>
+    <string name="support">Support</string>
+    <string name="rating">Ratings and reviews</string>
+    <string name="callHead">Call a professional </string>
+    <string name="callGP">Call GP</string>
+    <string name="callInsurer">Call Insurer</string>
 
 </resources>

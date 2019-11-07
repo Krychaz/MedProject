@@ -1,21 +1,23 @@
 package com.cit.medi_screen;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 
 public class SignUpActivity extends AppCompatActivity {
-    EditText firstName;
-    EditText lastName;
-    EditText email;
-    EditText password;
-    EditText passwordRepeat;
+    private EditText firstName;
+    private EditText lastName;
+    private EditText email;
+    private EditText password;
+    private EditText passwordRepeat;
 
 
     Button signUp;
@@ -33,6 +35,7 @@ public class SignUpActivity extends AppCompatActivity {
         passwordRepeat = (EditText) findViewById(R.id.passwdRepeatEditText);
         signUp = (Button) findViewById(R.id.signUpButtonComplete);
         signUp.setOnClickListener(new View.OnClickListener() {
+                                      @RequiresApi(api = Build.VERSION_CODES.KITKAT)
                                       @Override
                                       public void onClick(View v) {
                                           DatabaseAccess dbAcess = DatabaseAccess.getInstance(getApplicationContext());
@@ -47,7 +50,7 @@ public class SignUpActivity extends AppCompatActivity {
                                           else {
                                               if (passwd.equals(passwdRpt)) {
                                                   long val = dbAcess.addUser(fName, lName, emailIn, passwd);
-                                                  if (val > 0) {
+                                                  if (val > 0 ) {
                                                       Toast.makeText(SignUpActivity.this, "You have registered", Toast.LENGTH_SHORT).show();
                                                       dbAcess.close();
                                                       Intent moveToSignIn = new Intent(SignUpActivity.this, SignInActivity.class);

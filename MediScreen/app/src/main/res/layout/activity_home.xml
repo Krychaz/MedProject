@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeActivity">
+
+    <Button
+        android:id="@+id/callButton"
+        android:layout_width="300dp"
+        android:layout_height="75dp"
+        android:background="@color/colorPrimary"
+        android:text="@string/call"
+        android:textColor="@android:color/white"
+
+        android:textSize="18dp"
+        app:layout_constraintBottom_toTopOf="@+id/mediAIButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.751" />
+
+    <Button
+        android:id="@+id/RatingsButton"
+        android:layout_width="300dp"
+        android:layout_height="75dp"
+        android:background="@color/colorPrimary"
+        android:text="@string/rating"
+        android:textColor="@android:color/white"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/supportButton"
+        app:layout_constraintVertical_bias="0.2" />
+
+    <Button
+
+        android:id="@+id/mediAIButton"
+
+        android:layout_width="300dp"
+        android:layout_height="75dp"
+        android:background="@color/colorPrimary"
+        android:text="@string/MediAi"
+        android:textColor="@android:color/white"
+
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.384" />
+
+    <Button
+        android:id="@+id/supportButton"
+        android:layout_width="300dp"
+        android:layout_height="75dp"
+        android:background="@color/colorPrimary"
+        android:textColor="@android:color/white"
+        android:text="@string/support"
+
+        android:textSize="18dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/callButton"
+        app:layout_constraintVertical_bias="0.366" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

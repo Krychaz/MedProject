@@ -1,5 +1,6 @@
 package com.cit.medi_screen;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,17 +24,20 @@ public class InsuranceActivity extends AppCompatActivity {
         setInsure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent medHisIntent = new Intent(InsuranceActivity.this, MedicalHistoryActivity.class);
+
                 String insureNameIn = insureName.getText().toString().trim();
-                Integer  insurePhoneInt = Integer.parseInt(insurePhone.getText().toString().trim());
+                Integer insurePhoneInt = Integer.parseInt(insurePhone.getText().toString().trim());
                 DatabaseAccess dbAccess = DatabaseAccess.getInstance(getApplicationContext());
                 dbAccess.open();
-                long res = dbAccess.addInsure(insureNameIn ,insurePhoneInt);
-                if ( insureNameIn.equals("")||insurePhoneInt == null)
+                long res = dbAccess.addInsure(insureNameIn, insurePhoneInt);
+                if (insureNameIn.equals("") || insurePhoneInt == null)
                     Toast.makeText(InsuranceActivity.this, "Error please enter all fields", Toast.LENGTH_SHORT).show();
                 else {
-                    if (res > 0)
+                    if (res > 0) {
                         Toast.makeText(InsuranceActivity.this, "You set your insurer", Toast.LENGTH_SHORT).show();
-                    else
+                        startActivity(medHisIntent);
+                    } else
                         Toast.makeText(InsuranceActivity.this, "Error setting your insurer", Toast.LENGTH_SHORT).show();
 
                     dbAccess.close();
