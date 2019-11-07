@@ -29,5 +29,12 @@
     <string name="callHead">Call a professional </string>
     <string name="callGP">Call GP</string>
     <string name="callInsurer">Call Insurer</string>
+    <string name="insureEmail">Insurer email:</string>
+    <string name="gpEmail">GP email:</string>
+    <string name="sendEmail">Write message here:</string>
+    <string name="supportHead">Support</string>
+    <string name="supportMid">Write an email to your GP or insurer</string>
+    <string name="sendGP">Send to GP</string>
+    <string name="sendInsurer">Send to Insurer</string>
 
 </resources>

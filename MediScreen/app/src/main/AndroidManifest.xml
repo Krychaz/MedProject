@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.cit.medi_screen">
+
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
@@ -10,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CallActivity"></activity>
+        <activity android:name=".SupportActivity"></activity>
+        <activity android:name=".CallActivity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".MedicalHistoryActivity" />
         <activity

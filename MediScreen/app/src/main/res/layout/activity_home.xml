@@ -20,7 +20,7 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.751" />
+        app:layout_constraintVertical_bias="0.712" />
 
     <Button
         android:id="@+id/RatingsButton"
@@ -32,10 +32,10 @@
         android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/supportButton"
-        app:layout_constraintVertical_bias="0.2" />
+        app:layout_constraintVertical_bias="0.375" />
 
     <Button
 
@@ -53,23 +53,39 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.384" />
+        app:layout_constraintVertical_bias="0.349" />
 
     <Button
         android:id="@+id/supportButton"
         android:layout_width="300dp"
         android:layout_height="75dp"
         android:background="@color/colorPrimary"
-        android:textColor="@android:color/white"
         android:text="@string/support"
+        android:textColor="@android:color/white"
 
         android:textSize="18dp"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/callButton"
-        app:layout_constraintVertical_bias="0.366" />
+        app:layout_constraintVertical_bias="0.581" />
+
+    <Button
+        android:id="@+id/payButton"
+        android:layout_width="300dp"
+        android:layout_height="75dp"
+        android:background="@color/colorPrimary"
+        android:text="@string/Payment"
+        android:textColor="@android:color/white"
+
+        android:textSize="18dp"
+
+        app:layout_constraintBottom_toTopOf="@+id/supportButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mediAIButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

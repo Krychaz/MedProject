@@ -101,11 +101,12 @@ public class DatabaseAccess {
         return res;
     }
 
-    public long addGP(String gpName, String gpAddress, Integer gpPhone) {
+    public long addGP(String gpName, String gpAddress, Integer gpPhone, String gpemail) {
         ContentValues values = new ContentValues();
         values.put("gpname", gpName);
         values.put("gpaddress", gpAddress);
         values.put("gpphone", gpPhone);
+        values.put("gpemail", gpemail);
 
 
         long res = db.update("registeruser", values, "email='" + SignInActivity.getLoggedInEmail() + "'", null);
@@ -113,10 +114,11 @@ public class DatabaseAccess {
     }
 
 
-    public long addInsure(String insureName, Integer insurePhone) {
+    public long addInsure(String insureName, Integer insurePhone, String insureEmail) {
         ContentValues values = new ContentValues();
         values.put("insurename", insureName);
         values.put("insurephone", insurePhone);
+        values.put("insureemail", insureEmail);
 
 
         long res = db.update("registeruser", values, "email='" + SignInActivity.getLoggedInEmail() + "'", null);
@@ -142,6 +144,7 @@ public class DatabaseAccess {
         }
         return buffer.toString();
     }
+
     public String getInsurePhone() {
         c = db.rawQuery("select insurephone from registeruser where email ='" + SignInActivity.getLoggedInEmail() + "'", new String[]{});
         StringBuffer buffer = new StringBuffer();
@@ -151,6 +154,7 @@ public class DatabaseAccess {
         }
         return buffer.toString();
     }
+
     public String getGPPhone() {
         c = db.rawQuery("select gpphone from registeruser where email ='" + SignInActivity.getLoggedInEmail() + "'", new String[]{});
         StringBuffer buffer = new StringBuffer();
@@ -163,6 +167,26 @@ public class DatabaseAccess {
 
     public String getAge() {
         c = db.rawQuery("select age from registeruser where email ='" + SignInActivity.getLoggedInEmail() + "'", new String[]{});
+        StringBuffer buffer = new StringBuffer();
+        while (c.moveToNext()) {
+            String emailOut = c.getString(0);
+            buffer.append("" + emailOut);
+        }
+        return buffer.toString();
+    }
+
+    public String getGPEmail() {
+        c = db.rawQuery("select gpemail from registeruser where email ='" + SignInActivity.getLoggedInEmail() + "'", new String[]{});
+        StringBuffer buffer = new StringBuffer();
+        while (c.moveToNext()) {
+            String emailOut = c.getString(0);
+            buffer.append("" + emailOut);
+        }
+        return buffer.toString();
+    }
+
+    public String getInsureEmail() {
+        c = db.rawQuery("select insureemail from registeruser where email ='" + SignInActivity.getLoggedInEmail() + "'", new String[]{});
         StringBuffer buffer = new StringBuffer();
         while (c.moveToNext()) {
             String emailOut = c.getString(0);

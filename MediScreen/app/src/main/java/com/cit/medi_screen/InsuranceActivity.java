@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class InsuranceActivity extends AppCompatActivity {
     private EditText insureName;
     private EditText insurePhone;
+    private EditText insureEmail;
     private Button setInsure;
 
     @Override
@@ -20,6 +21,8 @@ public class InsuranceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_insurance);
         insureName = (EditText) findViewById(R.id.insureNameEditText);
         insurePhone = (EditText) findViewById(R.id.insurePhoneEditText);
+        insureEmail = (EditText) findViewById(R.id.insurerEmailEditText);
+
         setInsure = (Button) findViewById(R.id.insureSetButton);
         setInsure.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -27,13 +30,16 @@ public class InsuranceActivity extends AppCompatActivity {
                 Intent medHisIntent = new Intent(InsuranceActivity.this, MedicalHistoryActivity.class);
 
                 String insureNameIn = insureName.getText().toString().trim();
+                String insuremailIn = insureEmail.getText().toString().trim();
+
                 Integer insurePhoneInt = Integer.parseInt(insurePhone.getText().toString().trim());
                 DatabaseAccess dbAccess = DatabaseAccess.getInstance(getApplicationContext());
                 dbAccess.open();
-                long res = dbAccess.addInsure(insureNameIn, insurePhoneInt);
-                if (insureNameIn.equals("") || insurePhoneInt == null)
+                if (insureNameIn.equals("")||insuremailIn.equals("") || insurePhoneInt == null)
                     Toast.makeText(InsuranceActivity.this, "Error please enter all fields", Toast.LENGTH_SHORT).show();
                 else {
+                    long res = dbAccess.addInsure(insureNameIn, insurePhoneInt,insuremailIn);
+
                     if (res > 0) {
                         Toast.makeText(InsuranceActivity.this, "You set your insurer", Toast.LENGTH_SHORT).show();
                         startActivity(medHisIntent);
