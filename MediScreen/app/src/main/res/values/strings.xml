@@ -25,7 +25,7 @@
     <string name="MediAi">Medi-Ai</string>
     <string name="call">Request Professional</string>
     <string name="support">Support</string>
-    <string name="rating">Ratings and reviews</string>
+    <string name="rating">Ratings &amp; reviews</string>
     <string name="callHead">Call a professional </string>
     <string name="callGP">Call GP</string>
     <string name="callInsurer">Call Insurer</string>
@@ -36,5 +36,9 @@
     <string name="supportMid">Write an email to your GP or insurer</string>
     <string name="sendGP">Send to GP</string>
     <string name="sendInsurer">Send to Insurer</string>
+    <string name="ratingHead">Ratings &amp; Reviews</string>
+    <string name="ratingMid">Send a rating and a review to the developers.</string>
+    <string name="sendReview">Write review here:</string>
+    <string name="send">Send</string>
 
 </resources>

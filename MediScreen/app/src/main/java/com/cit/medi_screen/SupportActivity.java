@@ -1,6 +1,7 @@
 package com.cit.medi_screen;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -28,17 +29,21 @@ public class SupportActivity extends AppCompatActivity {
                 db = getDBAccess();
                 db.open();
                 String emailBodyTidy = emailBody.getText().toString().trim();
+                if (emailBodyTidy.equals("")) {
+                    Toast.makeText(SupportActivity.this, "Please fill in message", Toast.LENGTH_SHORT).show();
 
-                String email = db.getGPEmail();
-                Intent i = new Intent(Intent.ACTION_SEND);
-                i.setType("message/rfc822");
-                i.putExtra(Intent.EXTRA_EMAIL, new String[]{email});
-                i.putExtra(Intent.EXTRA_SUBJECT, "support");
-                i.putExtra(Intent.EXTRA_TEXT, emailBodyTidy);
-                try {
-                    startActivity(Intent.createChooser(i, "Send mail..."));
-                } catch (android.content.ActivityNotFoundException ex) {
-                    Toast.makeText(SupportActivity.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+                } else {
+                    String email = db.getGPEmail();
+                    Intent i = new Intent(Intent.ACTION_SEND);
+                    i.setType("message/rfc822");
+                    i.putExtra(Intent.EXTRA_EMAIL, new String[]{email});
+                    i.putExtra(Intent.EXTRA_SUBJECT, "Medi-App support");
+                    i.putExtra(Intent.EXTRA_TEXT, emailBodyTidy);
+                    try {
+                        startActivity(Intent.createChooser(i, "Send mail..."));
+                    } catch (android.content.ActivityNotFoundException ex) {
+                        Toast.makeText(SupportActivity.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
@@ -50,10 +55,8 @@ public class SupportActivity extends AppCompatActivity {
                 String emailBodyTidy = emailBody.getText().toString().trim();
 
                 String email = db.getInsureEmail();
-                Intent i = new Intent(Intent.ACTION_SEND);
-                i.setType("message/rfc822");
-                i.putExtra(Intent.EXTRA_EMAIL, new String[]{email});
-                i.putExtra(Intent.EXTRA_SUBJECT, "support");
+                Intent i = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:" + email));
+                i.putExtra(Intent.EXTRA_SUBJECT, "Medi-Screen patient support.");
                 i.putExtra(Intent.EXTRA_TEXT, emailBodyTidy);
                 try {
                     startActivity(Intent.createChooser(i, "Send mail..."));

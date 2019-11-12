@@ -18,7 +18,7 @@ public class PgConnection {
         final String SQL_INSERT = "insert into patient values (?,?,?,?)";
 
         try (
-                Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/medi_screen_db", "postgres", "vinyl123");
+                Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/medi_screen_db", "postgres", "******");
                 PreparedStatement myStmt = connection.prepareStatement(SQL_INSERT)) {
             myStmt.setString(1, email);
             myStmt.setString(2, password);
