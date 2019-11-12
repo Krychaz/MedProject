@@ -43,7 +43,7 @@
         android:text="@string/ratingMid"
         android:textAlignment="center"
         android:textColor="@color/colorPrimary"
-        android:textSize="55px"
+        android:textSize="65px"
         app:layout_constraintBottom_toTopOf="@+id/sendRatingEditText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"

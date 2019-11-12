@@ -25,7 +25,7 @@
         android:id="@+id/suppportHead"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="24dp"
         android:text="@string/supportHead"
         android:textColor="@color/colorPrimary"
         android:textSize="132px"
@@ -36,12 +36,12 @@
 
     <TextView
         android:id="@+id/supportMid"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:text="@string/supportMid"
         android:textAlignment="center"
         android:textColor="@color/colorPrimary"
-        android:textSize="75px"
+        android:textSize="65px"
         app:layout_constraintBottom_toTopOf="@+id/sendEmailEditText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

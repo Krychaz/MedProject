@@ -33,7 +33,7 @@
     <string name="gpEmail">GP email:</string>
     <string name="sendEmail">Write message here:</string>
     <string name="supportHead">Support</string>
-    <string name="supportMid">Write an email to your GP or insurer</string>
+    <string name="supportMid">Write an email to your GP or insurer.</string>
     <string name="sendGP">Send to GP</string>
     <string name="sendInsurer">Send to Insurer</string>
     <string name="ratingHead">Ratings &amp; Reviews</string>
