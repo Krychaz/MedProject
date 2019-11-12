@@ -33,7 +33,7 @@ public class RatingActivity extends AppCompatActivity {
 
                 } else {
                     int starRating =Math.round(rating.getRating());
-                    String subject = "Medi-Screen review with rating: " +  starRating+ "/5.";
+                    String subject = "Medi-Screen review with rating: " +  starRating + "/5.";
                     String email = "Support@mediscreen.com";
                     Intent i = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:" + email));
                     i.putExtra(Intent.EXTRA_SUBJECT, subject);

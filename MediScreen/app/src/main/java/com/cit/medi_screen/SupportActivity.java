@@ -34,10 +34,8 @@ public class SupportActivity extends AppCompatActivity {
 
                 } else {
                     String email = db.getGPEmail();
-                    Intent i = new Intent(Intent.ACTION_SEND);
-                    i.setType("message/rfc822");
-                    i.putExtra(Intent.EXTRA_EMAIL, new String[]{email});
-                    i.putExtra(Intent.EXTRA_SUBJECT, "Medi-App support");
+                    Intent i = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:" + email));
+                    i.putExtra(Intent.EXTRA_SUBJECT, "Medi-Screen patient support.");
                     i.putExtra(Intent.EXTRA_TEXT, emailBodyTidy);
                     try {
                         startActivity(Intent.createChooser(i, "Send mail..."));
