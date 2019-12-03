@@ -9,7 +9,12 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
     }
     buildTypes {
         release {
@@ -26,8 +31,8 @@ dependencies {
     implementation 'com.google.android.material:material:1.0.0'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+   // androidTestImplementation 'androidx.testPg:runner:1.1.1'
+//    androidTestImplementation 'androidx.testPg.espresso:espresso-core:3.1.1'
     implementation 'com.readystatesoftware.sqliteasset:sqliteassethelper:+'
     implementation files('libs/postgresql-42.2.8.jar')
 }

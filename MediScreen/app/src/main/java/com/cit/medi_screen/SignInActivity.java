@@ -1,13 +1,19 @@
 package com.cit.medi_screen;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.cit.medi_screen.pgtest.PgConnection;
+
+import java.sql.Connection;
 
 public class SignInActivity extends AppCompatActivity {
     private EditText email;
@@ -24,6 +30,9 @@ public class SignInActivity extends AppCompatActivity {
 
     private static String loggedInEmail;
     private static String loggedInPassword;
+
+
+    private static PgConnection pg = new PgConnection();
 
 
     @Override
@@ -43,6 +52,7 @@ public class SignInActivity extends AppCompatActivity {
             }
         });
         login.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
                 Intent gpIntent = new Intent(SignInActivity.this, GpActivity.class);
@@ -50,12 +60,18 @@ public class SignInActivity extends AppCompatActivity {
                 Intent medHisIntent = new Intent(SignInActivity.this, MedicalHistoryActivity.class);
                 Intent homeIntent = new Intent(SignInActivity.this, HomeActivity.class);
 
+
+                //  String consString = con.toString();
+
                 dbAccess = getDBAccess();
                 dbAccess.open();
                 String emailIn = email.getText().toString().trim();
                 String passwdIn = password.getText().toString().trim();
                 String email = dbAccess.getEmail(emailIn);
                 String passwd = dbAccess.getPassword(emailIn);
+                if (email.equals("error") && passwd.equals("error"))
+                    Toast.makeText(SignInActivity.this, "Error unable to connect to DataBase", Toast.LENGTH_SHORT).show();
+
                 if (emailIn.equals("") && passwdIn.equals(""))
                     Toast.makeText(SignInActivity.this, "Error please enter email and password ", Toast.LENGTH_SHORT).show();
                 else if (email.equals(emailIn) && passwd.equals(passwdIn)) {
@@ -63,7 +79,6 @@ public class SignInActivity extends AppCompatActivity {
 
                     loggedInEmail = email;
                     loggedInPassword = passwd;
-                    gpExists = gpExists();
                     gpExists = gpExists();
                     if (gpExists) {
                         Toast.makeText(SignInActivity.this, "gp exists", Toast.LENGTH_SHORT).show();
@@ -96,6 +111,7 @@ public class SignInActivity extends AppCompatActivity {
         return DatabaseAccess.getInstance(getApplicationContext());
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public boolean gpExists() {
         dbAccess.open();
         return dbAccess.gpExists();
@@ -106,6 +122,7 @@ public class SignInActivity extends AppCompatActivity {
         return dbAccess.medHisExists();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public boolean insurerExists() {
         dbAccess.open();
         return dbAccess.insureExists();
@@ -122,6 +139,6 @@ public class SignInActivity extends AppCompatActivity {
     public boolean getInsurerExists() {
         return insurerExists;
     }
+
+
 }
-
-

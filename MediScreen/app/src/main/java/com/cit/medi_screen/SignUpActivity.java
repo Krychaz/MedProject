@@ -56,7 +56,12 @@ public class SignUpActivity extends AppCompatActivity {
                                                       Intent moveToSignIn = new Intent(SignUpActivity.this, SignInActivity.class);
                                                       startActivity(moveToSignIn);
 
-                                                  } else {
+                                                  }
+                                                  else if (val == -2){
+                                                      Toast.makeText(SignUpActivity.this, "Unable to connect to DataBase.", Toast.LENGTH_SHORT).show();
+
+                                                  }
+                                                  else {
                                                       Toast.makeText(SignUpActivity.this, "Registration error", Toast.LENGTH_SHORT).show();
                                                       dbAcess.close();
                                                   }

@@ -1,12 +1,14 @@
 package com.cit.medi_screen;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class GpActivity extends AppCompatActivity {
@@ -28,6 +30,7 @@ public class GpActivity extends AppCompatActivity {
         gpPhone = (EditText) findViewById(R.id.gpPhoneEditText);
         setGp = (Button) findViewById(R.id.gpSetButton);
         setGp.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
                 Intent insureIntent = new Intent(GpActivity.this, InsuranceActivity.class);
