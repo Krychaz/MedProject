@@ -38,8 +38,10 @@ public class SignUpActivity extends AppCompatActivity {
                                       @RequiresApi(api = Build.VERSION_CODES.KITKAT)
                                       @Override
                                       public void onClick(View v) {
-                                          DatabaseAccess dbAcess = DatabaseAccess.getInstance(getApplicationContext());
-                                          dbAcess.open();
+                                          DatabaseAccess dbAcess = new DatabaseAccess();
+
+                                          // DatabaseAccess dbAcess = DatabaseAccess.getInstance(getApplicationContext());
+                                          //dbAcess.open();
                                           String fName = firstName.getText().toString().trim();
                                           String lName = lastName.getText().toString().trim();
                                           String emailIn = email.getText().toString().trim();
@@ -50,20 +52,18 @@ public class SignUpActivity extends AppCompatActivity {
                                           else {
                                               if (passwd.equals(passwdRpt)) {
                                                   long val = dbAcess.addUser(fName, lName, emailIn, passwd);
-                                                  if (val > 0 ) {
+                                                  if (val > 0) {
                                                       Toast.makeText(SignUpActivity.this, "You have registered", Toast.LENGTH_SHORT).show();
-                                                      dbAcess.close();
+                                                      //dbAcess.close();
                                                       Intent moveToSignIn = new Intent(SignUpActivity.this, SignInActivity.class);
                                                       startActivity(moveToSignIn);
 
-                                                  }
-                                                  else if (val == -2){
+                                                  } else if (val == -2) {
                                                       Toast.makeText(SignUpActivity.this, "Unable to connect to DataBase.", Toast.LENGTH_SHORT).show();
 
-                                                  }
-                                                  else {
+                                                  } else {
                                                       Toast.makeText(SignUpActivity.this, "Registration error", Toast.LENGTH_SHORT).show();
-                                                      dbAcess.close();
+                                                      //dbAcess.close();
                                                   }
 
                                               } else

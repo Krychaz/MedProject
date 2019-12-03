@@ -1,12 +1,14 @@
 package com.cit.medi_screen;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class InsuranceActivity extends AppCompatActivity {
@@ -25,6 +27,7 @@ public class InsuranceActivity extends AppCompatActivity {
 
         setInsure = (Button) findViewById(R.id.insureSetButton);
         setInsure.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
                 Intent medHisIntent = new Intent(InsuranceActivity.this, MedicalHistoryActivity.class);
@@ -33,8 +36,10 @@ public class InsuranceActivity extends AppCompatActivity {
                 String insuremailIn = insureEmail.getText().toString().trim();
 
                 Integer insurePhoneInt = Integer.parseInt(insurePhone.getText().toString().trim());
-                DatabaseAccess dbAccess = DatabaseAccess.getInstance(getApplicationContext());
-                dbAccess.open();
+                DatabaseAccess dbAccess = new DatabaseAccess();
+
+                // DatabaseAccess dbAccess = DatabaseAccess.getInstance(getApplicationContext());
+               // dbAccess.open();
                 if (insureNameIn.equals("")||insuremailIn.equals("") || insurePhoneInt == null)
                     Toast.makeText(InsuranceActivity.this, "Error please enter all fields", Toast.LENGTH_SHORT).show();
                 else {
@@ -46,7 +51,7 @@ public class InsuranceActivity extends AppCompatActivity {
                     } else
                         Toast.makeText(InsuranceActivity.this, "Error setting your insurer", Toast.LENGTH_SHORT).show();
 
-                    dbAccess.close();
+                   // dbAccess.close();
                 }
             }
         });

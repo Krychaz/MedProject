@@ -1,4 +1,4 @@
-package com.cit.medi_screen;
+/*package com.cit.medi_screen;
 
 import android.content.Context;
 
@@ -19,3 +19,6 @@ public class SignUpDatabaseHelper extends SQLiteAssetHelper {
     }
 
 }
+
+
+ */

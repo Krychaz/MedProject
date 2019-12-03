@@ -40,11 +40,12 @@ public class GpActivity extends AppCompatActivity {
                 String gpEmailIn = gpEmail.getText().toString().trim();
 
                 Integer gpPhoneInt = Integer.parseInt(gpPhone.getText().toString().trim());
-                DatabaseAccess dbAccess = DatabaseAccess.getInstance(getApplicationContext());
+               // DatabaseAccess dbAccess = DatabaseAccess.getInstance(getApplicationContext());
+                  DatabaseAccess dbAccess = new DatabaseAccess();
                 if (gpAddressIn.equals("") || gpNameIn.equals("") ||gpEmailIn.equals("")|| gpPhoneInt == null)
                     Toast.makeText(GpActivity.this, "Error please enter all fields", Toast.LENGTH_SHORT).show();
                 else {
-                    dbAccess.open();
+                    //dbAccess.open();
                     long res = dbAccess.addGP(gpNameIn, gpAddressIn, gpPhoneInt,gpEmailIn);
 
                     if (res > 0) {
@@ -57,7 +58,7 @@ public class GpActivity extends AppCompatActivity {
                     } else
                         Toast.makeText(GpActivity.this, "Error setting your GP", Toast.LENGTH_SHORT).show();
 
-                    dbAccess.close();
+           //         dbAccess.close();
                 }
             }
         });

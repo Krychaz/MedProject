@@ -4,10 +4,12 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -20,7 +22,8 @@ public class CallActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_call);
-        dbAccess = getDBAccess();
+       // dbAccess = getDBAccess();
+        dbAccess = new DatabaseAccess();
         callGP = findViewById(R.id.callGPButton);
         callGP = findViewById(R.id.callGPButton);
         callInsurer = findViewById(R.id.callInsurerButton);
@@ -39,6 +42,7 @@ public class CallActivity extends AppCompatActivity {
             }
         });
         callInsurer.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
                 Intent phoneIntent = new Intent(Intent.ACTION_CALL);
@@ -56,18 +60,21 @@ public class CallActivity extends AppCompatActivity {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public String getInsurePhone() {
-        dbAccess.open();
+       // dbAccess.open();
         return dbAccess.getInsurePhone();
     }
 
     public String getGPPhone() {
-        dbAccess.open();
+       // dbAccess.open();
         return dbAccess.getGPPhone();
     }
 
-
+/*
     private DatabaseAccess getDBAccess() {
         return DatabaseAccess.getInstance(getApplicationContext());
     }
+
+ */
 }

@@ -3,6 +3,8 @@ package com.cit.medi_screen;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.StrictMode;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,6 +29,8 @@ public class SignInActivity extends AppCompatActivity {
 
     private boolean insurerExists;
 
+    private Button test;
+    private static final String TAG = "MyActivity";
 
     private static String loggedInEmail;
     private static String loggedInPassword;
@@ -39,6 +43,19 @@ public class SignInActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        test = findViewById(R.id.button);
+
+        test.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Connection con = pg.getCon();
+                Log.v(TAG, String.valueOf(con));
+                Toast.makeText(SignInActivity.this,String.valueOf(con),Toast.LENGTH_LONG).show();
+
+            }
+        });
 
         email = findViewById(R.id.emailEditText);
         password = findViewById(R.id.passwdEditText);
@@ -63,16 +80,22 @@ public class SignInActivity extends AppCompatActivity {
 
                 //  String consString = con.toString();
 
-                dbAccess = getDBAccess();
-                dbAccess.open();
+              //  dbAccess = getDBAccess();
+              //  dbAccess.open();
+                dbAccess = new DatabaseAccess();
                 String emailIn = email.getText().toString().trim();
                 String passwdIn = password.getText().toString().trim();
                 String email = dbAccess.getEmail(emailIn);
+                Log.wtf(TAG,email);
+
                 String passwd = dbAccess.getPassword(emailIn);
-                if (email.equals("error") && passwd.equals("error"))
+
+                Log.wtf(TAG,passwd);
+
+                if (email.equals("error") || passwd.equals("error"))
                     Toast.makeText(SignInActivity.this, "Error unable to connect to DataBase", Toast.LENGTH_SHORT).show();
 
-                if (emailIn.equals("") && passwdIn.equals(""))
+                else if (emailIn.equals("") && passwdIn.equals(""))
                     Toast.makeText(SignInActivity.this, "Error please enter email and password ", Toast.LENGTH_SHORT).show();
                 else if (email.equals(emailIn) && passwd.equals(passwdIn)) {
                     Toast.makeText(SignInActivity.this, "Sucess", Toast.LENGTH_SHORT).show();
@@ -100,31 +123,33 @@ public class SignInActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(SignInActivity.this, "Error incorrect email and/or password", Toast.LENGTH_SHORT).show();
                 }
-                dbAccess.close();
+              //  dbAccess.close();
 
 
             }
         });
     }
-
+/*
     private DatabaseAccess getDBAccess() {
         return DatabaseAccess.getInstance(getApplicationContext());
     }
 
+ */
+
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public boolean gpExists() {
-        dbAccess.open();
+        //dbAccess.open();
         return dbAccess.gpExists();
     }
 
     public boolean medHisExists() {
-        dbAccess.open();
+       // dbAccess.open();
         return dbAccess.medHisExists();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public boolean insurerExists() {
-        dbAccess.open();
+       // dbAccess.open();
         return dbAccess.insureExists();
     }
 

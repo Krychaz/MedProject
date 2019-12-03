@@ -1,8 +1,5 @@
 package com.cit.medi_screen;
 
-import android.content.ContentValues;
-import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 
 import androidx.annotation.RequiresApi;
@@ -12,13 +9,13 @@ import com.cit.medi_screen.pgtest.PgConnection;
 
 public class DatabaseAccess {
     private PgConnection pg = new PgConnection();
-    private SignUpDatabaseHelper dbHelper;
-    private SQLiteDatabase db;
-    private static DatabaseAccess instance;
-    private SignInActivity sign = new SignInActivity();
+    // private SignUpDatabaseHelper dbHelper;
+    //  private SQLiteDatabase db;
+    //  private static DatabaseAccess instance;
+//    private SignInActivity sign = new SignInActivity();
 
 
-    private DatabaseAccess(Context context) {
+  /*  private DatabaseAccess(Context context) {
 
         this.dbHelper = new SignUpDatabaseHelper(context);
 
@@ -43,6 +40,8 @@ public class DatabaseAccess {
         }
 
     }
+
+   */
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public String getEmail(String email) {
@@ -91,6 +90,9 @@ public class DatabaseAccess {
             return -2;
         } else
             row = pg.pgInsertPatient(fname, lName, email, password);
+        return row;
+
+        /*
         if (row > 0) {
             long res;
 
@@ -107,6 +109,8 @@ public class DatabaseAccess {
             return res;
         } else
             return 0;
+
+         */
     }
 
 
@@ -129,17 +133,19 @@ public class DatabaseAccess {
     public boolean gpExists() {
         boolean res;
         String gp = getGP();
-        if (gp.equals("null"))
-            res = false;
-        else
+        System.out.println(gp);
+        if (gp !=null)
             res = true;
+        else
+            res = false;
         return res;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public long addGP(String gpName, String gpAddress, Integer gpPhone, String gpEmail) {
         int row = pg.pgInsertGP(gpName, gpAddress, gpEmail, gpPhone, SignInActivity.getLoggedInEmail());
-        if (row > 0) {
+        return row;
+        /*if (row > 0) {
             ContentValues values = new ContentValues();
             values.put("gpname", gpName);
             values.put("gpaddress", gpAddress);
@@ -151,12 +157,16 @@ public class DatabaseAccess {
             return res;
         } else
             return 0;
+
+         */
     }
 
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public long addInsure(String insureName, Integer insurePhone, String insureEmail) {
         int row = pg.pgInsertInsurer(insureName, insureEmail, insurePhone, SignInActivity.getLoggedInEmail());
+        return row;
+       /*
         if (row > 0) {
             ContentValues values = new ContentValues();
             values.put("insurename", insureName);
@@ -168,16 +178,18 @@ public class DatabaseAccess {
             return res;
         } else
             return 0;
+
+        */
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public boolean insureExists() {
         boolean res;
         String gp = getInsure();
-        if (gp.equals("null"))
-            res = false;
-        else
+        if (gp != null)
             res = true;
+        else
+            res = false;
         return res;
     }
 
@@ -196,6 +208,7 @@ public class DatabaseAccess {
         return pg.pgGetInsurer(SignInActivity.getLoggedInEmail());
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public String getInsurePhone() {
         /*
         c = db.rawQuery("select insurephone from registeruser where email ='" + SignInActivity.getLoggedInEmail() + "'", new String[]{});
@@ -207,7 +220,7 @@ public class DatabaseAccess {
         return buffer.toString();
 
          */
-        return null;
+        return pg.pgGetInsurerPhone(SignInActivity.getLoggedInEmail());
     }
 
     public String getGPPhone() {/*
@@ -219,7 +232,7 @@ public class DatabaseAccess {
         }
         return buffer.toString();
            */
-        return null;
+        return pg.pgGetGPPhone(SignInActivity.getLoggedInEmail());
     }
 
     public String getAge() {
@@ -233,14 +246,14 @@ public class DatabaseAccess {
         return buffer.toString();
 
    */
-        return null;
+        return pg.pgGetAge(SignInActivity.getLoggedInEmail());
     }
 
 
     public boolean medHisExists() {
         boolean res;
         String gp = getAge();
-        if (gp.equals("null"))
+        if (gp.equals(null))
             res = false;
         else
             res = true;

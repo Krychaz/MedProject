@@ -25,12 +25,13 @@ public class SupportActivity extends AppCompatActivity {
         emailBody = findViewById(R.id.sendEmailEditText);
         sendGP = findViewById(R.id.sendGPButton);
         sendInsurer = findViewById(R.id.sendInsurerButton);
+        db= new DatabaseAccess();
         sendGP.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
-                db = getDBAccess();
-                db.open();
+               // db = getDBAccess();
+                //db.open();
                 String emailBodyTidy = emailBody.getText().toString().trim();
                 if (emailBodyTidy.equals("")) {
                     Toast.makeText(SupportActivity.this, "Please fill in message", Toast.LENGTH_SHORT).show();
@@ -52,8 +53,8 @@ public class SupportActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
-                db = getDBAccess();
-                db.open();
+                //db = getDBAccess();
+               //db.open();
                 String emailBodyTidy = emailBody.getText().toString().trim();
 
                 String email = db.getInsure();
@@ -69,8 +70,11 @@ public class SupportActivity extends AppCompatActivity {
         });
     }
 
+    /*
     private DatabaseAccess getDBAccess() {
         return DatabaseAccess.getInstance(getApplicationContext());
     }
 
+
+     */
 }

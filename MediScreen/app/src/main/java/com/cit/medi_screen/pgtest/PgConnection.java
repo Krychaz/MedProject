@@ -1,11 +1,8 @@
 package com.cit.medi_screen.pgtest;
 
 import android.os.Build;
-import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
-
-import com.cit.medi_screen.SignInActivity;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,16 +11,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class PgConnection {
-SignInActivity sign = new SignInActivity();
     public Connection getCon() {
         try {
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://192.168.108.112:5432/MediDB", "postgres", "");
+            Connection connection = DriverManager.getConnection("jdbc:postgresql://192.168.0.44:5432/medi_screen_db", "postgres", "");
             return connection;
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println(e);
             return null
-            ;
+                    ;
 
 
         }
@@ -33,7 +29,7 @@ SignInActivity sign = new SignInActivity();
     public int pgInsertPatient(String fname, String lName, String email, String password) {
 
         int row;
-        final String SQL_INSERT = "insert into patient values (?,?,?,?)";
+        final String SQL_INSERT = "insert into patient values  (?,?,?,?)";
 
         try (
                 Connection connection = getCon();
@@ -54,17 +50,61 @@ SignInActivity sign = new SignInActivity();
         return row;
     }
 
+    /* @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+     public String pgGetall() {
+         String pgEmail = "no res";
+         String SQL_QUERY = "SELECT * FROM patient_login ";
+
+         try (
+                 PreparedStatement myStmt = connection.prepareStatement(SQL_QUERY)) {
+             ResultSet rs = myStmt.executeQuery();
+             if(rs.next()) {
+                 pgEmail = rs.getString("first_name");
+             }
+             else {
+
+             }
+         } catch (SQLException e) {
+             e.printStackTrace();
+             System.out.println(e);
+
+         }
+         return pgEmail;
+
+     }
+
+     */
+    private String getEmailRes(ResultSet rs) throws SQLException {
+        String email = " no res 1";
+        System.out.println(rs);
+        if (rs.next()) {
+            email = rs.getString("email");
+
+
+        }
+        return email;
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public String pgGetEmail(String email) {
-        String pgEmail = "";
+        String pgEmail = "no res";
         String SQL_QUERY = "SELECT email FROM patient WHERE email = ?";
-        try (
-                Connection connection = getCon();
-                PreparedStatement myStmt = connection.prepareStatement(SQL_QUERY)) {
+
+        System.out.println(email);
+
+        try (Connection connection = getCon();
+             PreparedStatement myStmt = connection.prepareStatement(SQL_QUERY)) {
+            //System.out.println(myStmt);
+
             myStmt.setString(1, email);
             ResultSet rs = myStmt.executeQuery();
-            rs.next();
-            pgEmail = rs.getString("email");
+            pgEmail = getEmailRes(rs);
+            // System.out.println(pgEmail);
+            // if (rs.next()) {
+            //   pgEmail = rs.getString("email");
+            //} else {
+
+            //}
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println(e);
@@ -129,13 +169,12 @@ SignInActivity sign = new SignInActivity();
             myStmt.setInt(2, gpPhone);
             myStmt.setString(3, gpName);
             myStmt.setString(4, gpAddress);
-            row = myStmt.executeUpdate();
+            myStmt.executeUpdate();
 
 
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println(e);
-            row = 0;
 
         }
         String SQL_UPDATE = "UPDATE patient SET gpemail = ? WHERE email = ?";
@@ -171,13 +210,12 @@ SignInActivity sign = new SignInActivity();
             myStmt.setString(1, insurerName);
             myStmt.setString(2, insurerEmail);
             myStmt.setInt(3, insurerPhone);
-            row = myStmt.executeUpdate();
+            myStmt.executeUpdate();
 
 
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println(e);
-            row = 0;
 
         }
         String SQL_UPDATE = "UPDATE patient SET insureremail = ? WHERE email = ?";
@@ -220,6 +258,37 @@ SignInActivity sign = new SignInActivity();
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public String pgGetInsurerPhone(String email) {
+        String pgInsurerphone = " ";
+        String SQL_QUERY =
+                "select i.insurerphone from insurer i inner join patient p on i.insureremail = p.insureremail where p.email =  ?";
+        try (
+                Connection connection = getCon();
+                PreparedStatement myStmt = connection.prepareStatement(SQL_QUERY)) {
+            myStmt.setString(1, email);
+            ResultSet rs = myStmt.executeQuery();
+            rs.next();
+            pgInsurerphone = rs.getString("insurerphone");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println(e);
+
+        }
+        System.out.println(pgInsurerphone);
+        return pgInsurerphone;
+
+    }
+
+    public String pgGetGPPhone(String loggedInEmail) {
+        return "aye";
+    }
+
+    public String pgGetAge(String loggedInEmail) {
+        return "aye";
+
+    }
 }
+
 
 //usb webserver for db
