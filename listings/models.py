@@ -1,9 +1,8 @@
 from django.db import models
 from datetime import datetime
-from prof.models import Doctor
+from django.contrib.auth.models import User
 
 class listing(models.Model):
-  doctor = models.ForeignKey(Doctor, on_delete=models.DO_NOTHING)
   name = models.CharField(max_length=200)
   age = models.IntegerField(default=0)
   gender = models.CharField(max_length=20)
